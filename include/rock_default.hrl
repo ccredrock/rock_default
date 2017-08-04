@@ -9,11 +9,6 @@
 -ifndef(COMMON_HRL).
 -define(COMMON_HRL, true).
 
--export([hs/0, hs/1, cr/1, ca/1, ce/1, dm/1,
-         pj/0, vs/0, pf/0, pf/1,
-         log/1, log/2, logw/2,
-         em/0, er/0, eq/0, es/0]).
-
 -define(USER_TOP_LEN, 3).
 -define(USER_TOP_TIME, 200).
 
