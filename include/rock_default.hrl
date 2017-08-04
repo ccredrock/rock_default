@@ -44,7 +44,7 @@ pj() ->
     list_to_atom(element(1, init:script_id())).
 
 vs() ->
-    list_to_atom(element(2, init:script_id())).
+    element(2, init:script_id()).
 
 %%------------------------------------------------------------------------------
 log(Str) -> log("log.erl", Str).
