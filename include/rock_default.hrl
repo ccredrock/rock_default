@@ -6,11 +6,8 @@
 %%% @end
 %%% Created : 2017年07月17日10:56:58
 %%%-------------------------------------------------------------------
--ifndef(COMMON_HRL).
--define(COMMON_HRL, true).
-
--define(USER_TOP_LEN, 3).
--define(USER_TOP_TIME, 200).
+-ifndef(ROCK_DEFAULT_HRL).
+-define(ROCK_DEFAULT_HRL, true).
 
 %%------------------------------------------------------------------------------
 hs() -> hs(user_default).
