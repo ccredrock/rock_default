@@ -61,5 +61,7 @@ er() -> spawn(fun() -> etop:start([{output, text}, {interval, 1}, {lines, 20}, {
 eq() -> spawn(fun() -> etop:start([{output, text}, {interval, 1}, {lines, 20}, {sort, msg_q}]) end).
 es() -> etop:stop().
 
+default() -> proplists:delete(default, ?MODULE:module_info(exports)).
+
 -endif.
 
