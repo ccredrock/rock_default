@@ -10,6 +10,24 @@
 -define(ROCK_DEFAULT_HRL, true).
 
 %%------------------------------------------------------------------------------
+hl() ->
+    [{"hs/1",  "host swap"},
+     {"cr/1",  "to core"},
+     {"ca/1",  "to asm"},
+     {"ce/1",  "export all"},
+     {"dm/1",  "decompile"},
+     {"pj/0",  "project name"},
+     {"vs/0",  "project version"},
+     {"log/2", "log term to file"},
+     {"pf/2",  "recon profile"},
+     {"em/2",  "etop memory"},
+     {"er/2",  "etop reductions"},
+     {"eq/2",  "etop message queue"},
+     {"es/2",  "etop stop"},
+     {"fp/1",  "fprof"},
+     {"ep/1",  "eprof"}].
+
+%%------------------------------------------------------------------------------
 hs() -> hs(user_default).
 hs(M) ->
     {ok, Path} = file:get_cwd(),
@@ -61,7 +79,25 @@ er() -> spawn(fun() -> etop:start([{output, text}, {interval, 1}, {lines, 20}, {
 eq() -> spawn(fun() -> etop:start([{output, text}, {interval, 1}, {lines, 20}, {sort, msg_q}]) end).
 es() -> etop:stop().
 
-default() -> proplists:delete(default, ?MODULE:module_info(exports)).
+%%------------------------------------------------------------------------------
+fp(Fun) ->
+    fprof:apply(Fun, []),
+    fprof:profile(),
+    fprof:analyse().
+
+fp(Fun, FileName) ->
+    fprof:apply(Fun, []),
+    fprof:profile(),
+    fprof:analyse({dest, FileName}).
+
+ep(Fun) ->
+    eprof:profile(Fun),
+    eprof:analyze().
+
+ep(Fun, FileName) ->
+    eprof:profile(Fun),
+    eprof:log(FileName),
+    eprof:analyze().
 
 -endif.
 
